@@ -1,24 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Breadcrumb, Layout, Menu, theme,Button, message, Upload, UploadFile } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import type { UploadProps } from 'antd';
+ 
+const { Header, Content, Footer } = Layout;
+
+//#8B66C7
+
+
+//#F2F2F2 - menu background
+//#766FCF - text color
+
+const props: UploadProps = {
+  name: 'file',
+  action: 'http://localhost:3000/upload',
+  method: 'POST',
+  accept:'.xlsx',
+  headers: {
+    "content-type": 'multipart/form-data',
+    "Access-Control-Allow-Origin":"*"
+  },
+  maxCount:1,
+  onChange(info: any) {
+    console.log(info);
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    
+  },
+};
+
+
+
 
 function App() {
+
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Layout className="layout">
+        <Header style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyItems: 'center', backgroundColor: `rgb(121,78,189)`, height: 100, paddingTop: 20, }}>
+          <Upload {...props}  >
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        </Upload>
+      </Header>
+     
+      <Footer style={{ textAlign: 'center' }}>Powered by Ant Design ©2023 Created by Dagmawi</Footer>
+    </Layout>
     </div>
   );
 }
