@@ -1,5 +1,5 @@
 
-export default class TaskModel { 
+ interface TaskModel { 
 
     id: Number;
     description: String;
@@ -8,14 +8,6 @@ export default class TaskModel {
     rate: Number;
     amount: Number;
 
-    constructor(id:Number,description:String,unit:String,quantity:Number,rate:Number,amount:Number,) { 
-        this.id = id;
-        this.description = description;
-        this.unit = unit;
-        this.quantity = quantity;
-        this.rate = rate;
-        this.amount = amount;
-
-    }
-
 }
+
+export default TaskModel;

@@ -5,20 +5,10 @@ import  TaskModel from "../models/task_model";
 
 
 
-static  async  getTasks() : Promise<Array<TaskModel>> {
+static  async  getTasks()  {
         
-        const response = await API.get('/task',);
- 
-        var  tasks:Array<TaskModel> = [] ;
-      
-         response.data.map((taskData:any) => {
-          
-             const task = new TaskModel(taskData['id'],taskData['description'],taskData['unit'],taskData['quantity'],taskData['rate'],taskData['amount']);
-          
-            tasks.push(task);
-       });
-          
-        return tasks;
+    const response = await API.get('/task',);
+    return response.data;
     }
 
 

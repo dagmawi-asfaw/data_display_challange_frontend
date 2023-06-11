@@ -1,4 +1,4 @@
-import { configureStore, createSlice,PayloadAction,createAsyncThunk } from '@reduxjs/toolkit'
+import {   createSlice,createAsyncThunk } from '@reduxjs/toolkit'
  
 import TaskRepository from "../api/task_repository";
 import TaskModel from "../models/task_model";
@@ -33,7 +33,7 @@ const  taskSlice = createSlice(
     {
         name: 'task',
         initialState: {
-            data: [] as Array<TaskModel>,
+            data: []  ,
             status:'idle'
         },
         reducers: {}, 
