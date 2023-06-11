@@ -38,8 +38,8 @@ const MainHeader = () => {
     
   return (
     <Header className='main-header'>
-      <Upload  {...props}>
-          <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      <Upload   {...props}>
+          <Button  icon={<UploadOutlined />}>Click to Upload</Button>
   </Upload>
 </Header>
   );

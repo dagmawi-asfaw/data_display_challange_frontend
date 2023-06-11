@@ -1,11 +1,12 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
  
-import {   Table,  } from 'antd';
+import {DeleteOutlined,EditOutlined,FileAddOutlined} from '@ant-design/icons';
+import { Button,Table,  Space,   } from 'antd';
 import {  useSelector } from 'react-redux';
 import { RootState,useAppDispatch } from '../../store';
 import {getTasks } from '../../slices/task_slice'
- 
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
  
 
  
@@ -13,7 +14,7 @@ import {getTasks } from '../../slices/task_slice'
 
 function DataTable() {
 
-  
+  const [size, setSize] = useState<SizeType>('large'); 
 
   const tasks = useSelector((state:RootState) => state.data);
   const dispatch = useAppDispatch()
@@ -32,11 +33,7 @@ function DataTable() {
       dataIndex: 'description',
       key: 'description',
     },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
+ 
     {
       title: 'Unit',
       dataIndex: 'unit',
@@ -62,7 +59,12 @@ function DataTable() {
         dataIndex: '',
         key: 'x',
           render: () => { 
-              return <a>Delete</a>;
+            return (
+            <Space wrap>
+                <Button type="primary" icon={<EditOutlined />} size={size} />
+                <Button type="primary" style={{backgroundColor:'green'}} icon={<FileAddOutlined />} size={size} />
+                <Button type="primary" style={{backgroundColor:'red'}} icon={<DeleteOutlined />} size={size} />
+            </Space>);
           },
       },
   ];
