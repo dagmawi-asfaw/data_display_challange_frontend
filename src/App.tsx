@@ -3,9 +3,11 @@ import './App.css';
 import { Breadcrumb, Layout, Menu, theme,Button, message, Upload, UploadFile } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
-import TaskRepository from './api/task_repository';
-import TaskModel from './models/task_model';
  
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState,useAppDispatch } from './store';
+import {getTasks } from './slices/task_slice'
+import { AsyncThunkAction } from '@reduxjs/toolkit';
 const { Header, Content, Footer } = Layout;
 
 //#8B66C7
@@ -43,8 +45,13 @@ function App() {
   } = theme.useToken();
 
 
+  const tasks = useSelector((state:RootState) => state.data);
+  const dispatch = useAppDispatch()
 
- 
+ // useEffect(() => {
+  //  dispatch(getTasks())
+  //  console.log(tasks);
+ // });
 
   return (
     <div className="App">
@@ -55,7 +62,9 @@ function App() {
         </Upload>
       </Header>
      
-      <Footer style={{ textAlign: 'center' }}>Powered by Ant Design ©2023 Created by Dagmawi</Footer>
+        <Footer style={{ textAlign: 'center' }}>Powered by Ant Design ©2023 Created by Dagmawi</Footer>
+        
+
     </Layout>
     </div>
   );
